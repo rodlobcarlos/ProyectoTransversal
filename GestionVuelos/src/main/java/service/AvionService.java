@@ -12,4 +12,6 @@ public interface AvionService {
 	Optional<Avion> findById(Long id);
 
 	List<Avion> findAllByNombre(String nombre);
+
+	public Avion createAvion(Avion avion);
 }

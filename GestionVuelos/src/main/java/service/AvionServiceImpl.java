@@ -28,4 +28,9 @@ public class AvionServiceImpl implements AvionService {
 		return avionRepository.findAllByNombre(nombre);
 	}
 
+	@Override
+	public Avion createAvion(Avion avion) {
+		return avionRepository.createAvion(avion);
+	}
+
 }

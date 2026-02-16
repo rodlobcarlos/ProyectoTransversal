@@ -16,4 +16,6 @@ public interface AvionRepository extends JpaRepository<Avion, Long> {
 	Optional<Avion> findById(Long id);
 
 	List<Avion> findAllByNombre(String nombre);
+	
+	Avion createAvion(Avion avion);
 }
