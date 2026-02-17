@@ -1,14 +1,17 @@
-package model;
+package com.project.GestionVuelos.model;
 
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -25,28 +28,42 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="vuelo")
+@Table(name = "vuelo")
 public class Vuelo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idVuelo;
-	
-	@Column(name="destino")
-	private  String destino;
-	
-	@Column(name="origen")
+	private long idVuelo;
+
+	@JsonProperty("destino")
+	@Column(name = "destino")
+	private String destino;
+
+	@JsonProperty("origen")
+	@Column(name = "origen")
 	private String origen;
-	
-	@Column(name="distancia")
+
+	@JsonProperty("distancia")
+	@Column(name = "distancia")
 	private int distancia;
-	
-	@OneToOne
+
+	@JsonProperty("avion")
+	@ManyToOne
 	private Avion avion;
-	
+
+	@JsonProperty("pasajeros")
 	@OneToMany
 	private List<Pasajero> pasajeros;
-	
+
+	@JsonProperty("miembros_tripulacions")
 	@OneToMany
 	private List<Miembros_tripulacion> miembros_tripulacions;
+
+	public long getIdVuelo() {
+		return idVuelo;
+	}
+
+	public void setIdVuelo(long idVuelo) {
+		this.idVuelo = idVuelo;
+	}
 }

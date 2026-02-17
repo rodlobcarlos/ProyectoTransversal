@@ -1,9 +1,9 @@
-package service;
+package com.project.GestionVuelos.service;
 
 import java.util.List;
 import java.util.Optional;
 
-import model.Miembros_tripulacion;
+import com.project.GestionVuelos.model.Miembros_tripulacion;
 
 public interface Miembros_tripulacionService {
 

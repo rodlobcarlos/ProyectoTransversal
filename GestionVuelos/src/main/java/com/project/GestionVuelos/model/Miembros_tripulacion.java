@@ -1,13 +1,16 @@
-package model;
+package com.project.GestionVuelos.model;
+
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,16 +25,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="pasajero")
-public class Pasajero {
+@Table(name="miembrosTripulacion")
+public class Miembros_tripulacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idPasajero;
+	private Long idTripulacion;
 	
-	@Column(name="pasaporte")
-	private String pasaporte;
+	@Column(name="experiencia")
+	private int experiencia;
 	
-	@OneToOne
-	private Vuelo vuelo;
+	@OneToMany(mappedBy = "miembros_tripulacions", cascade = CascadeType.ALL)
+	private List<Vuelo> vuelos;
 }

@@ -9,26 +9,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
-import model.Avion;
-import model.VuelosNotFoundException;
-import service.AvionService;
+import com.project.GestionVuelos.model.Avion;
+import com.project.GestionVuelos.model.Vuelo;
+import com.project.GestionVuelos.model.VuelosNotFoundException;
+import com.project.GestionVuelos.service.AvionService;
+import com.project.GestionVuelos.service.VueloService;
 
-@RestController
 @Controller
+@RequestMapping("/miweb")
 public class GestionaVuelos {
 
 	@Autowired
 	private AvionService avionService;
+	
+	@Autowired
+	private VueloService vueloService;
 
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -37,9 +43,39 @@ public class GestionaVuelos {
 
 	@PostMapping("/avion")
 	public ResponseEntity<Avion> addAvion(@RequestBody Avion avion) {
-		Avion addedAvion = avionService.createAvion(avion);
-		return new ResponseEntity<>(addedAvion, HttpStatus.CREATED);
+		Avion addedProduct = avionService.createAvion(avion);
+		return new ResponseEntity<>(addedProduct, HttpStatus.CREATED);
 	}
+	
+	@PutMapping("/avion/{id}")
+    public ResponseEntity<Avion> modifyAvion(@PathVariable long id, @RequestBody Avion newAvion) {
+		Avion product = avionService.modifyNombreAvion(id, newAvion);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+	
+	@DeleteMapping("/aviones/{id}")
+    public ResponseEntity<Response> deleteAvion(@PathVariable long id) {
+        avionService.deleteAvion(id);
+        return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
+    }
+	
+	@PostMapping("/vuelo")
+	public ResponseEntity<Vuelo> addVuelo(@RequestBody Vuelo vuelo) {
+		Vuelo addedVuelo = vueloService.createVuelo(vuelo);
+		return new ResponseEntity<>(addedVuelo, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/vuelo/{id}")
+    public ResponseEntity<Vuelo> modifyVuelo(@PathVariable long id, @RequestBody Vuelo newVuelo) {
+		Vuelo vuelo = vueloService.modifyNombreVuelo(id, newVuelo);
+        return new ResponseEntity<>(vuelo, HttpStatus.OK);
+    }
+	
+	@DeleteMapping("/vuelo/{id}")
+    public ResponseEntity<Response> deleteVuelo(@PathVariable long id) {
+        avionService.deleteAvion(id);
+        return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
+    }
 
 	@RequestMapping("/lista")
 	public String lista(Model model) {

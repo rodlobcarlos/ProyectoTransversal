@@ -1,0 +1,7 @@
+<beans>
+	<bean id="avion" class="com.project.GestionVuelos.model">
+		<property name="vuelos" value="No registrado"></property>
+	</bean>
+	
+	<bean id="avionService" class="com.project.GestionVuelos.service"></bean>
+</beans>

@@ -1,12 +1,12 @@
-package service;
+package com.project.GestionVuelos.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import model.Miembros_tripulacion;
-import repository.Miembros_tripulacionRepository;
+import com.project.GestionVuelos.model.Miembros_tripulacion;
+import com.project.GestionVuelos.repository.Miembros_tripulacionRepository;
 
 @Service
 public class Miembros_tripulacionServiceImpl implements Miembros_tripulacionService {

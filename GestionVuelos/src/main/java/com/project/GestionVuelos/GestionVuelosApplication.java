@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan(basePackages = "model")
+@EntityScan(basePackages = "com.project.GestionVuelos.model")
 public class GestionVuelosApplication {
 
 	public static void main(String[] args) {
