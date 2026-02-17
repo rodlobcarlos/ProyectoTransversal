@@ -14,7 +14,7 @@ public class Response {
 	private Error error;  
 
 	@Data
-	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)  
 	static class Error {
 		public Error(int errorCode2, String errorMessage) {
 			// TODO Auto-generated constructor stub

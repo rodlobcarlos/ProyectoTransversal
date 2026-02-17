@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -22,16 +23,33 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="pasajero")
+@Table(name = "pasajero")
 public class Pasajero {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPasajero;
-	
-	@Column(name="pasaporte")
+
+	@Column(name = "pasaporte")
 	private String pasaporte;
-	
-	@OneToOne
+
+	@ManyToOne
 	private Vuelo vuelo;
+
+	public Vuelo getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
+	}
+
+	public String getPasaporte() {
+		return pasaporte;
+	}
+
+	public void setPasaporte(String pasaporte) {
+		this.pasaporte = pasaporte;
+	}
+
 }

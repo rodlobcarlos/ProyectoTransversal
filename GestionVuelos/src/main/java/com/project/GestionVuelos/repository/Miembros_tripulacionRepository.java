@@ -13,5 +13,5 @@ public interface Miembros_tripulacionRepository extends JpaRepository<Miembros_t
 
 	List<Miembros_tripulacion> findAll();
 	
-	Optional<Miembros_tripulacion> findById(Long id);
+	Miembros_tripulacion findById(long id);
 }

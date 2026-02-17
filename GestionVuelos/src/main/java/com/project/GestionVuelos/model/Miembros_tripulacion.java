@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,23 +21,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Component
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
-@Table(name="miembrosTripulacion")
+@Table(name = "miembrosTripulacion")
 public class Miembros_tripulacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idTripulacion;
-	
-	@Column(name="experiencia")
+
+	@Column(name = "experiencia")
 	private int experiencia;
-	
+
 	@OneToMany(mappedBy = "miembros_tripulacions", cascade = CascadeType.ALL)
 	private List<Vuelo> vuelos;
+
+	public int getExperiencia() {
+		return experiencia;
+	}
+
+	public void setExperiencia(int experiencia) {   
+		this.experiencia = experiencia;	
+	}
+
 }

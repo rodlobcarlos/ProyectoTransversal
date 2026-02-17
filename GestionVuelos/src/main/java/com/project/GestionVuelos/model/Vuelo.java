@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,15 +49,15 @@ public class Vuelo {
 	private int distancia;
 
 	@JsonProperty("avion")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE) 
 	private Avion avion;
-
+	
 	@JsonProperty("pasajeros")
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL) 
 	private List<Pasajero> pasajeros;
 
 	@JsonProperty("miembros_tripulacions")
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL) 
 	private List<Miembros_tripulacion> miembros_tripulacions;
 
 	public long getIdVuelo() {
@@ -66,4 +67,14 @@ public class Vuelo {
 	public void setIdVuelo(long idVuelo) {
 		this.idVuelo = idVuelo;
 	}
+
+	public Avion getAvion() {
+		return avion;
+	}
+
+	public void setAvion(Avion avion) {
+		this.avion = avion;
+	}
+
+	
 }

@@ -21,9 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.project.GestionVuelos.model.Avion;
+import com.project.GestionVuelos.model.Miembros_tripulacion;
+import com.project.GestionVuelos.model.Pasajero;
 import com.project.GestionVuelos.model.Vuelo;
 import com.project.GestionVuelos.model.VuelosNotFoundException;
 import com.project.GestionVuelos.service.AvionService;
+import com.project.GestionVuelos.service.Miembros_tripulacionService;
+import com.project.GestionVuelos.service.PasajeroService;
 import com.project.GestionVuelos.service.VueloService;
 
 @Controller
@@ -35,6 +39,12 @@ public class GestionaVuelos {
 	
 	@Autowired
 	private VueloService vueloService;
+	
+	@Autowired
+	private Miembros_tripulacionService miembros_tripulacionService;
+	
+	@Autowired
+	private PasajeroService pasajeroService;
 
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -76,12 +86,24 @@ public class GestionaVuelos {
         avionService.deleteAvion(id);
         return new ResponseEntity<>(Response.noErrorResponse(), HttpStatus.OK);
     }
+	
+	@PutMapping("/miembro_tripulacion/{id}")
+    public ResponseEntity<Miembros_tripulacion> modifyTripulacion(@PathVariable long id, @RequestBody Miembros_tripulacion tripulacion) {
+    	Miembros_tripulacion miembros_tripulacion = miembros_tripulacionService.modifyExperienciaTripulante(id, tripulacion);
+        return new ResponseEntity<>(miembros_tripulacion, HttpStatus.OK);
+    }
+    
+    @PutMapping("/pasajero/{id}")
+    public ResponseEntity<Pasajero> updatePasajero(@PathVariable long id, @RequestBody Pasajero pasajero) {
+    	Pasajero pasajero2 = pasajeroService.updatePasajero(id, pasajero);
+        return new ResponseEntity<>(pasajero2, HttpStatus.OK);
+    }
 
 	@RequestMapping("/lista")
 	public String lista(Model model) {
 		List<Avion> aviones = avionService.findAll();
 		System.out.println(aviones);
-		model.addAttribute("productos", aviones);
+		model.addAttribute("aviones", aviones);
 		return "lista";
 	}
 
@@ -94,7 +116,7 @@ public class GestionaVuelos {
 	}
 
 	// Método para obtener un producto por ID
-	@GetMapping("/producto/{id}")
+	@GetMapping("/avion/{id}")
 	public ResponseEntity<Optional<Avion>> getAvionById(@PathVariable Long id) {
 		Optional<Avion> aviones = avionService.findById(id);
 		return ResponseEntity.ok(aviones);

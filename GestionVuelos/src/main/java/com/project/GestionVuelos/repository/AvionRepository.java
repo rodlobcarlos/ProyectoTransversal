@@ -13,7 +13,7 @@ public interface AvionRepository extends JpaRepository<Avion, Long> {
 
 	List<Avion> findAll();
 
-	Optional findById(long id);
+	Optional<Avion> findById(long id);
 
 	List<Avion> findAllByNombre(String nombre);
 	

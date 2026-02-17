@@ -25,21 +25,20 @@ import lombok.Setter;
 @NoArgsConstructor // Constructor vacío (obligatorio para JPA)
 @AllArgsConstructor // Constructor con todos los campos
 @Entity
-@Table(name="avion")  
+@Table(name = "avion")
 public class Avion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idAvion;
-	
+	private long idAvion;
+
 	@JsonProperty("nombre")
-	@Column(name="nombre")
+	@Column(name = "nombre")
 	private String nombre;
-	
-	@JsonProperty("compañia")
-	@Column(name="compañia")
-	private String compañia;
-	
+
+	@Column(name = "compania")
+	private String compania;
+
 	@OneToMany(mappedBy = "avion", cascade = CascadeType.ALL)
 	private List<Vuelo> vuelos;
 
@@ -50,6 +49,21 @@ public class Avion {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
+
+	public long getIdAvion() {
+		return idAvion;
+	}
+
+	public void setIdAvion(Long idAvion) {
+		this.idAvion = idAvion;
+	}
+
+	public String getCompania() {
+		return compania;
+	}
+
+	public void setCompania(String compania) {
+		this.compania = compania;
+	}
+
 }

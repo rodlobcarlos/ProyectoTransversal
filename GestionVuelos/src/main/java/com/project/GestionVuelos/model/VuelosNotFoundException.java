@@ -20,7 +20,7 @@ public class VuelosNotFoundException extends RuntimeException {
 	}
 
 	public VuelosNotFoundException(Long id) {
-		super("Vuelo no encontrado: " + id);
+		super("Vuelo no encontrado: " + id);  
 	}
 
 }

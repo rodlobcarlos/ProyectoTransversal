@@ -8,12 +8,14 @@
 		<table>
 		       <thead>
 		           <tr>
-		               <th>Nombre del avion</th>
+		               <th>Listado de aviones</th>
 		           </tr>
 		       </thead>
 		       <tbody>
 		           <tr th:each="avion : ${aviones}">
-		               <td th:text="${avion.name}">Nombre del avion</td>
+		               <td th:text="${avion.idAvion}">Nombre del avion</td>
+		              	<td th:text="${avion.nombre}">Nombre del avion</td>
+		               	<td th:text="${avion.compania}">Nombre del avion</td>		               
 		           </tr>
 		       </tbody>
 		   </table>

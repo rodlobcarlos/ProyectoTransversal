@@ -9,4 +9,7 @@ public interface PasajeroService {
 	List<Pasajero> findAll();
 
 	Pasajero findByPasaporte(String pasaporte);
+
+	Pasajero updatePasajero(long id, Pasajero pasajero);
+
 }
