@@ -1,5 +1,7 @@
 package com.project.GestionVuelos.model;
 
+import org.jspecify.annotations.Nullable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,10 +13,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -47,6 +45,17 @@ public class Usuario {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public Usuario(Long id, String usuario, String clave) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.clave = clave;
+	}
+
+	public Usuario() {
+		super();
 	}
 
 }
