@@ -17,7 +17,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Override
    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       Usuario usuario = usuarioRepository.findByNombre(username);
+       Usuario usuario = usuarioRepository.findByUsuario(username);
        if (usuario == null) {
            throw new UsernameNotFoundException("Usuario no encontrado: " + username);
        }
@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
    }
 	@Override
 	public boolean existsByNombre(String nombre) {
-		return usuarioRepository.existsByNombre(nombre);
+		return usuarioRepository.existsByUsuario(nombre);
 	}
 	public void saveUsuario(Usuario usuario) {
 	    usuarioRepository.save(usuario);
